@@ -89,7 +89,7 @@ jobs:
         shell: bash
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r requirements.txt --timeout 45
+          python3 -m pip install -r core_requirements.txt --timeout 45
 
       - name: Run meshroom_compute –h (Python 3.9)
         run: python3 bin/meshroom_compute -h
