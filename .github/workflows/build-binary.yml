@@ -96,41 +96,41 @@ jobs:
           if exist examples     rmdir /s /q examples
           if exist include      rmdir /s /q include
 
-      - name: Remove unused PySide6 files (Linux)
-        if: runner.os == 'Linux'
-        env:
-          OUTPUT_DIR: ${{ steps.set-names.outputs.output_dir }}
-        run: |
-          cd "${OUTPUT_DIR}/lib/PySide6"
-          rm -rf resources translations typesystems examples include
-          cd Qt/lib
-          rm -f \
-            *Qt6WebEngine*.so* \
-            *Qt6Designer*.so* \
-            *Qt6Multimedia*.so* \
-            *Qt6SpatialAudio*.so* \
-            *Qt6DataVisualization*.so* \
-            *Qt6Graphs*.so* \
-            *Qt6Bluetooth*.so* \
-            *Qt6Nfc*.so* \
-            *Qt6SerialPort*.so* \
-            *Qt6SerialBus*.so* \
-            *Qt6Sensors*.so* \
-            *Qt6TextToSpeech*.so* \
-            *Qt6VirtualKeyboard*.so* \
-            *Qt6WebSockets*.so* \
-            *Qt6WebChannel*.so* \
-            *Qt6RemoteObjects*.so* \
-            *Qt6Scxml*.so* \
-            *Qt6StateMachine*.so* \
-            *Qt6NetworkAuth*.so*
+      # - name: Remove unused PySide6 files (Linux)
+      #   if: runner.os == 'Linux'
+      #   env:
+      #     OUTPUT_DIR: ${{ steps.set-names.outputs.output_dir }}
+      #   run: |
+      #     cd "${OUTPUT_DIR}/lib/PySide6"
+      #     rm -rf resources translations typesystems examples include
+      #     cd Qt/lib
+      #     rm -f \
+      #       *Qt6WebEngine*.so* \
+      #       *Qt6Designer*.so* \
+      #       *Qt6Multimedia*.so* \
+      #       *Qt6SpatialAudio*.so* \
+      #       *Qt6DataVisualization*.so* \
+      #       *Qt6Graphs*.so* \
+      #       *Qt6Bluetooth*.so* \
+      #       *Qt6Nfc*.so* \
+      #       *Qt6SerialPort*.so* \
+      #       *Qt6SerialBus*.so* \
+      #       *Qt6Sensors*.so* \
+      #       *Qt6TextToSpeech*.so* \
+      #       *Qt6VirtualKeyboard*.so* \
+      #       *Qt6WebSockets*.so* \
+      #       *Qt6WebChannel*.so* \
+      #       *Qt6RemoteObjects*.so* \
+      #       *Qt6Scxml*.so* \
+      #       *Qt6StateMachine*.so* \
+      #       *Qt6NetworkAuth*.so*
 
-      - name: Strip debug symbols from .so files (Linux)
-        if: runner.os == 'Linux'
-        env:
-          OUTPUT_DIR: ${{ steps.set-names.outputs.output_dir }}
-        run: |
-          find "$OUTPUT_DIR" -name "*.so*" -not -type l | xargs strip --strip-unneeded
+      # - name: Strip debug symbols from .so files (Linux)
+      #   if: runner.os == 'Linux'
+      #   env:
+      #     OUTPUT_DIR: ${{ steps.set-names.outputs.output_dir }}
+      #   run: |
+      #     find "$OUTPUT_DIR" -name "*.so*" -not -type l | xargs strip --strip-unneeded
 
       - name: Create archive (Windows)
         if: github.workflow == 'Nightly' && runner.os == 'Windows'
